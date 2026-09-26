@@ -14,9 +14,11 @@ const ShortenPopUp = ({ open, setOpen, refetch }) => {
       aria-labelledby="create-shorten-title"
       className="backdrop-blur-sm bg-slate-900/40 transition-all"
     >
-      <div className="flex justify-center items-center min-h-screen px-4 py-6 outline-none">
-        <CreateNewShorten setOpen={setOpen} refetch={refetch} />
-      </div>
+      <div className="flex justify-center items-center min-h-screen px-4 py-6 outline-none overflow-y-auto">
+  <div className="max-h-[90vh] overflow-y-auto">
+    <CreateNewShorten setOpen={setOpen} refetch={refetch} />
+  </div>
+</div>
     </Modal>
   );
 };

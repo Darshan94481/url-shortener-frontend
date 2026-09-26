@@ -70,16 +70,16 @@ function CreateNewShorten({ setOpen, refetch }) {
   };
 
   return (
-    <div className="bg-white rounded-3xl shadow-2xl border border-slate-100 max-w-lg w-full relative overflow-hidden p-6 sm:p-8 animate-fadeIn">
+    <div className="bg-white rounded-3xl shadow-2xl border border-slate-100 max-w-lg w-full relative overflow-hidden p-5 sm:p-8 animate-fadeIn">
       {/* Ambient background glow */}
       <div className="absolute -top-12 -right-12 w-40 h-40 bg-blue-500/10 rounded-full blur-2xl pointer-events-none" />
 
-      {/* Close button */}
+      {/* Close button - >= 40px touch target */}
       {!loading && (
         <button
           type="button"
           onClick={() => setOpen(false)}
-          className="absolute right-4 top-4 p-2 rounded-xl text-slate-400 hover:text-slate-700 hover:bg-slate-100 transition-colors"
+          className="absolute right-3.5 top-3.5 min-w-[40px] min-h-[40px] p-2 rounded-xl text-slate-400 hover:text-slate-700 hover:bg-slate-100 flex items-center justify-center transition-colors"
           aria-label="Close dialog"
         >
           <RxCross2 className="text-xl" />

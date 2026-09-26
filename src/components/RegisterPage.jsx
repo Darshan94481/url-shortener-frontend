@@ -46,12 +46,12 @@ const RegisterPage = () => {
         {/* Ambient Top Glow */}
         <div className="absolute -top-10 left-1/2 -translate-x-1/2 w-64 h-32 bg-indigo-500/20 rounded-full blur-3xl pointer-events-none" />
 
-        <div className="relative bg-white/95 backdrop-blur-xl border border-slate-200/80 shadow-xl shadow-slate-200/60 rounded-3xl p-8 sm:p-10">
-          <div className="text-center mb-8">
+        <div className="relative bg-white/95 backdrop-blur-xl border border-slate-200/80 shadow-xl shadow-slate-200/60 rounded-3xl p-5 sm:p-8 md:p-10">
+          <div className="text-center mb-6 sm:mb-8">
             <div className="inline-flex items-center justify-center w-12 h-12 rounded-2xl bg-indigo-50 text-indigo-600 mb-3 shadow-inner">
               <UserPlus className="w-6 h-6" />
             </div>
-            <h1 className="text-2xl sm:text-3xl font-bold text-slate-900 tracking-tight font-roboto">
+            <h1 className="text-xl sm:text-2xl md:text-3xl font-bold text-slate-900 tracking-tight font-roboto">
               Create an Account
             </h1>
             <p className="text-xs sm:text-sm text-slate-500 mt-1">

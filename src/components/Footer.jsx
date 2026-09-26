@@ -26,10 +26,10 @@ const Footer = () => {
 
   return (
     <footer className="border-t border-slate-200/80 bg-white/50 backdrop-blur-sm">
-      <div className="max-w-7xl mx-auto lg:px-14 sm:px-8 px-4 py-12">
-        <div className="flex flex-col md:flex-row items-center justify-between gap-6 pb-8 border-b border-slate-100">
-          <div className="flex items-center gap-2.5">
-            <div className="bg-custom-gradient w-8 h-8 rounded-xl flex items-center justify-center shadow-brand-sm">
+      <div className="max-w-7xl mx-auto lg:px-14 sm:px-8 px-4 py-8 sm:py-12">
+        <div className="flex flex-col lg:flex-row flex-wrap items-center justify-between gap-4 sm:gap-6 pb-6 sm:pb-8 border-b border-slate-100">
+          <div className="flex items-center gap-2.5 text-center sm:text-left">
+            <div className="bg-custom-gradient w-8 h-8 rounded-xl flex items-center justify-center shadow-brand-sm flex-shrink-0">
               <Link2 className="w-4 h-4 text-white" strokeWidth={2.5} />
             </div>
             <div>
@@ -51,7 +51,7 @@ const Footer = () => {
             <span>All Systems Operational</span>
           </div>
 
-          {/* Social Links */}
+          {/* Social Links - 40px touch targets */}
           <div className="flex items-center gap-2.5">
             {socials.map(({ icon: Icon, href, label }) => (
               <a
@@ -60,7 +60,7 @@ const Footer = () => {
                 target="_blank"
                 rel="noreferrer"
                 aria-label={label}
-                className="w-9 h-9 rounded-xl border border-slate-200/80 flex items-center justify-center text-slate-500 hover:bg-custom-gradient hover:text-white hover:border-transparent hover:-translate-y-0.5 transition-all duration-200 shadow-sm"
+                className="w-10 h-10 min-w-[40px] min-h-[40px] rounded-xl border border-slate-200/80 flex items-center justify-center text-slate-500 hover:bg-custom-gradient hover:text-white hover:border-transparent hover:-translate-y-0.5 transition-all duration-200 shadow-sm"
               >
                 <Icon className="w-4 h-4" />
               </a>
@@ -69,16 +69,16 @@ const Footer = () => {
         </div>
 
         {/* Bottom Copyright & Quick Links */}
-        <div className="pt-6 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-slate-500">
+        <div className="pt-6 flex flex-col sm:flex-row items-center justify-between gap-3 sm:gap-4 text-xs text-slate-500 text-center sm:text-left">
           <p>&copy; {currentYear} Linklytics. Designed for high-performance link management.</p>
-          <div className="flex items-center gap-6">
-            <Link to="/about" className="hover:text-blue-600 transition-colors">
+          <div className="flex flex-wrap items-center justify-center gap-4 sm:gap-6">
+            <Link to="/about" className="hover:text-blue-600 transition-colors py-1">
               About
             </Link>
-            <a href="#" className="hover:text-blue-600 transition-colors">
+            <a href="#" className="hover:text-blue-600 transition-colors py-1">
               Privacy Policy
             </a>
-            <a href="#" className="hover:text-blue-600 transition-colors">
+            <a href="#" className="hover:text-blue-600 transition-colors py-1">
               Terms of Service
             </a>
           </div>

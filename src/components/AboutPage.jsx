@@ -74,14 +74,14 @@ const AboutPage = () => {
 
           <motion.h1
             variants={fadeUp}
-            className="text-3xl sm:text-5xl font-extrabold text-slate-900 tracking-tight font-roboto mb-5"
+            className="text-2xl sm:text-4xl md:text-5xl font-extrabold text-slate-900 tracking-tight font-roboto mb-4 sm:mb-5"
           >
             Built for Speed, Reliability, and <span className="bg-gradient-to-r from-blue-600 to-indigo-600 bg-clip-text text-transparent">Actionable Insights</span>
           </motion.h1>
 
           <motion.p
             variants={fadeUp}
-            className="text-slate-600 text-base sm:text-lg leading-relaxed"
+            className="text-slate-600 text-sm sm:text-lg leading-relaxed"
           >
             Linklytics is designed to remove the friction from URL management.
             Whether you are launching a product launch, tracking an email newsletter, or sharing assets with a team,
@@ -95,22 +95,22 @@ const AboutPage = () => {
           initial="hidden"
           whileInView="show"
           viewport={{ once: true, amount: 0.1 }}
-          className="grid md:grid-cols-2 gap-6 mb-16"
+          className="grid grid-cols-1 md:grid-cols-2 gap-4 sm:gap-6 mb-12 sm:mb-16"
         >
           {features.map(({ icon: Icon, title, accent, desc }) => (
             <motion.div
               key={title}
               variants={fadeUp}
-              className="bg-white/80 backdrop-blur-sm border border-slate-200/80 rounded-2xl p-6 sm:p-8 shadow-card hover:shadow-card-hover transition-all duration-300 flex items-start gap-5"
+              className="bg-white/80 backdrop-blur-sm border border-slate-200/80 rounded-2xl p-4 sm:p-7 shadow-card hover:shadow-card-hover transition-all duration-300 flex items-start gap-3.5 sm:gap-5"
             >
-              <div className={`w-12 h-12 rounded-xl flex items-center justify-center flex-shrink-0 shadow-sm ${accent}`}>
-                <Icon className="w-6 h-6" />
+              <div className={`w-11 h-11 sm:w-12 sm:h-12 rounded-xl flex items-center justify-center flex-shrink-0 shadow-sm ${accent}`}>
+                <Icon className="w-5 h-5 sm:w-6 sm:h-6" />
               </div>
               <div>
-                <h3 className="text-lg font-bold text-slate-900 font-roboto mb-2">
+                <h3 className="text-base sm:text-lg font-bold text-slate-900 font-roboto mb-1.5 sm:mb-2">
                   {title}
                 </h3>
-                <p className="text-slate-600 text-sm leading-relaxed">
+                <p className="text-slate-600 text-xs sm:text-sm leading-relaxed">
                   {desc}
                 </p>
               </div>
@@ -124,27 +124,27 @@ const AboutPage = () => {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.6 }}
-          className="bg-gradient-to-br from-slate-900 via-slate-800 to-indigo-950 text-white rounded-3xl p-8 sm:p-12 relative overflow-hidden shadow-2xl"
+          className="bg-gradient-to-br from-slate-900 via-slate-800 to-indigo-950 text-white rounded-3xl p-5 sm:p-8 md:p-12 relative overflow-hidden shadow-2xl"
         >
           {/* Ambient Glows */}
           <div className="absolute top-0 right-0 w-80 h-80 bg-blue-500/10 rounded-full blur-3xl pointer-events-none" />
           <div className="absolute bottom-0 left-0 w-80 h-80 bg-indigo-500/10 rounded-full blur-3xl pointer-events-none" />
 
-          <div className="relative z-10 grid lg:grid-cols-2 gap-8 items-center">
+          <div className="relative z-10 grid grid-cols-1 lg:grid-cols-2 gap-6 sm:gap-8 items-center">
             <div>
               <span className="text-xs font-semibold uppercase tracking-wider text-blue-400">
                 Core Architecture
               </span>
-              <h2 className="text-2xl sm:text-3xl font-bold font-roboto mt-2 mb-4">
+              <h2 className="text-xl sm:text-2xl md:text-3xl font-bold font-roboto mt-2 mb-3 sm:mb-4">
                 Why Developers and Marketers Choose Linklytics
               </h2>
-              <p className="text-slate-300 text-sm leading-relaxed mb-6">
+              <p className="text-slate-300 text-xs sm:text-sm leading-relaxed mb-6">
                 Clean links increase click-through rates by up to 34%. Combined with detailed time-series telemetry, Linklytics gives you full command over your link distribution.
               </p>
 
-              <div className="grid sm:grid-cols-2 gap-3">
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-2.5 sm:gap-3">
                 {highlights.map((item) => (
-                  <div key={item} className="flex items-center gap-2 text-sm text-slate-200">
+                  <div key={item} className="flex items-center gap-2 text-xs sm:text-sm text-slate-200">
                     <CheckCircle2 className="w-4 h-4 text-emerald-400 flex-shrink-0" />
                     <span>{item}</span>
                   </div>
@@ -152,11 +152,11 @@ const AboutPage = () => {
               </div>
             </div>
 
-            <div className="flex flex-col sm:flex-row lg:flex-col items-start lg:items-end justify-center gap-4">
+            <div className="flex flex-col sm:flex-row lg:flex-col items-stretch sm:items-center lg:items-end justify-center gap-3 sm:gap-4 w-full">
               {token ? (
                 <Link
                   to="/dashboard"
-                  className="bg-custom-gradient text-white font-semibold px-8 py-3.5 rounded-xl shadow-brand-md hover:shadow-brand-lg transition-all duration-200 flex items-center gap-2 text-sm"
+                  className="w-full sm:w-auto min-h-[44px] bg-custom-gradient text-white font-semibold px-8 py-3 rounded-xl shadow-brand-md hover:shadow-brand-lg transition-all duration-200 flex items-center justify-center gap-2 text-sm text-center"
                 >
                   <span>Open Your Dashboard</span>
                   <ArrowRight className="w-4 h-4" />
@@ -165,14 +165,14 @@ const AboutPage = () => {
                 <div className="flex flex-col sm:flex-row gap-3 w-full sm:w-auto">
                   <Link
                     to="/register"
-                    className="bg-custom-gradient text-white font-semibold px-8 py-3.5 rounded-xl shadow-brand-md hover:shadow-brand-lg transition-all duration-200 flex items-center justify-center gap-2 text-sm text-center"
+                    className="w-full sm:w-auto min-h-[44px] bg-custom-gradient text-white font-semibold px-8 py-3 rounded-xl shadow-brand-md hover:shadow-brand-lg transition-all duration-200 flex items-center justify-center gap-2 text-sm text-center"
                   >
                     <span>Get Started Free</span>
                     <ArrowRight className="w-4 h-4" />
                   </Link>
                   <Link
                     to="/login"
-                    className="bg-white/10 hover:bg-white/20 text-white font-semibold px-6 py-3.5 rounded-xl border border-white/20 transition-all duration-200 text-sm text-center"
+                    className="w-full sm:w-auto min-h-[44px] bg-white/10 hover:bg-white/20 text-white font-semibold px-6 py-3 rounded-xl border border-white/20 transition-all duration-200 flex items-center justify-center text-sm text-center"
                   >
                     Log In
                   </Link>

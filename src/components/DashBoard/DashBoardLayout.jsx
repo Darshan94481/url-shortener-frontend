@@ -78,13 +78,13 @@ const DashBoardLayout = () => {
     <div className="min-h-[calc(100vh-64px)] bg-mesh-gradient lg:px-14 sm:px-8 px-4 py-8">
       <div className="max-w-7xl mx-auto space-y-8">
         {/* Top Header & Quick Action */}
-        <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 bg-white/70 backdrop-blur-md p-6 rounded-3xl border border-slate-200/80 shadow-xs">
+        <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 bg-white/70 backdrop-blur-md p-4 sm:p-6 rounded-3xl border border-slate-200/80 shadow-xs">
           <div>
             <div className="inline-flex items-center gap-1.5 text-xs font-semibold text-blue-600 bg-blue-50 px-2.5 py-1 rounded-full mb-2">
               <Calendar className="w-3.5 h-3.5" />
               <span>{dayjs().format('MMMM YYYY')} Overview</span>
             </div>
-            <h1 className="text-2xl sm:text-3xl font-extrabold text-slate-900 tracking-tight font-roboto">
+            <h1 className="text-xl sm:text-2xl md:text-3xl font-extrabold text-slate-900 tracking-tight font-roboto">
               Link Command Center
             </h1>
             <p className="text-xs sm:text-sm text-slate-500 mt-0.5">
@@ -94,7 +94,7 @@ const DashBoardLayout = () => {
 
           <button
             onClick={() => setShortenPopUp(true)}
-            className="inline-flex items-center justify-center gap-2 bg-custom-gradient text-white text-sm font-semibold px-5 py-3 rounded-2xl shadow-brand-sm hover:shadow-brand-md hover:-translate-y-0.5 active:translate-y-0 transition-all duration-200"
+            className="w-full sm:w-auto min-h-[44px] inline-flex items-center justify-center gap-2 bg-custom-gradient text-white text-sm font-semibold px-5 py-2.5 sm:py-3 rounded-2xl shadow-brand-sm hover:shadow-brand-md hover:-translate-y-0.5 active:translate-y-0 transition-all duration-200"
           >
             <Plus className="w-4 h-4 stroke-[2.5]" />
             <span>Create Short URL</span>
@@ -106,14 +106,14 @@ const DashBoardLayout = () => {
         ) : (
           <>
             {/* KPI Summary Cards Grid */}
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-4">
               {/* Card 1: Total Links */}
-              <div className="bg-white/80 backdrop-blur-sm border border-slate-200/80 rounded-2xl p-5 shadow-card hover:shadow-card-hover transition-all">
-                <div className="flex items-center justify-between mb-3">
+              <div className="bg-white/80 backdrop-blur-sm border border-slate-200/80 rounded-2xl p-4 sm:p-5 shadow-card hover:shadow-card-hover transition-all">
+                <div className="flex items-center justify-between mb-2.5 sm:mb-3">
                   <span className="text-xs font-semibold uppercase tracking-wider text-slate-500">
                     Total Links
                   </span>
-                  <div className="w-9 h-9 rounded-xl bg-blue-50 text-blue-600 flex items-center justify-center">
+                  <div className="w-9 h-9 rounded-xl bg-blue-50 text-blue-600 flex items-center justify-center flex-shrink-0">
                     <Link2 className="w-4 h-4" />
                   </div>
                 </div>
@@ -126,12 +126,12 @@ const DashBoardLayout = () => {
               </div>
 
               {/* Card 2: Total Engagements */}
-              <div className="bg-white/80 backdrop-blur-sm border border-slate-200/80 rounded-2xl p-5 shadow-card hover:shadow-card-hover transition-all">
-                <div className="flex items-center justify-between mb-3">
+              <div className="bg-white/80 backdrop-blur-sm border border-slate-200/80 rounded-2xl p-4 sm:p-5 shadow-card hover:shadow-card-hover transition-all">
+                <div className="flex items-center justify-between mb-2.5 sm:mb-3">
                   <span className="text-xs font-semibold uppercase tracking-wider text-slate-500">
                     Total Engagements
                   </span>
-                  <div className="w-9 h-9 rounded-xl bg-emerald-50 text-emerald-600 flex items-center justify-center">
+                  <div className="w-9 h-9 rounded-xl bg-emerald-50 text-emerald-600 flex items-center justify-center flex-shrink-0">
                     <MousePointerClick className="w-4 h-4" />
                   </div>
                 </div>
@@ -144,16 +144,16 @@ const DashBoardLayout = () => {
               </div>
 
               {/* Card 3: Top Performer */}
-              <div className="bg-white/80 backdrop-blur-sm border border-slate-200/80 rounded-2xl p-5 shadow-card hover:shadow-card-hover transition-all">
-                <div className="flex items-center justify-between mb-3">
+              <div className="bg-white/80 backdrop-blur-sm border border-slate-200/80 rounded-2xl p-4 sm:p-5 shadow-card hover:shadow-card-hover transition-all min-w-0">
+                <div className="flex items-center justify-between mb-2.5 sm:mb-3">
                   <span className="text-xs font-semibold uppercase tracking-wider text-slate-500">
                     Top Performer
                   </span>
-                  <div className="w-9 h-9 rounded-xl bg-amber-50 text-amber-600 flex items-center justify-center">
+                  <div className="w-9 h-9 rounded-xl bg-amber-50 text-amber-600 flex items-center justify-center flex-shrink-0">
                     <Award className="w-4 h-4" />
                   </div>
                 </div>
-                <div className="text-lg font-bold text-slate-900 truncate font-mono">
+                <div className="text-base sm:text-lg font-bold text-slate-900 truncate font-mono">
                   {metrics.topLink ? `/${metrics.topLink.shortUrl}` : '—'}
                 </div>
                 <p className="text-[11px] text-slate-400 mt-1">
@@ -164,12 +164,12 @@ const DashBoardLayout = () => {
               </div>
 
               {/* Card 4: Avg Clicks */}
-              <div className="bg-white/80 backdrop-blur-sm border border-slate-200/80 rounded-2xl p-5 shadow-card hover:shadow-card-hover transition-all">
-                <div className="flex items-center justify-between mb-3">
+              <div className="bg-white/80 backdrop-blur-sm border border-slate-200/80 rounded-2xl p-4 sm:p-5 shadow-card hover:shadow-card-hover transition-all">
+                <div className="flex items-center justify-between mb-2.5 sm:mb-3">
                   <span className="text-xs font-semibold uppercase tracking-wider text-slate-500">
                     Avg. Clicks / Link
                   </span>
-                  <div className="w-9 h-9 rounded-xl bg-purple-50 text-purple-600 flex items-center justify-center">
+                  <div className="w-9 h-9 rounded-xl bg-purple-50 text-purple-600 flex items-center justify-center flex-shrink-0">
                     <TrendingUp className="w-4 h-4" />
                   </div>
                 </div>
@@ -182,9 +182,9 @@ const DashBoardLayout = () => {
               </div>
             </div>
 
-            {/* Overall Analytics Graph Card */}
-            <div className="bg-white/90 backdrop-blur-sm border border-slate-200/80 rounded-3xl p-6 sm:p-7 shadow-card">
-              <div className="w-full h-[380px]">
+            {/* Overall Analytics Graph Card - responsive height */}
+            <div className="bg-white/90 backdrop-blur-sm border border-slate-200/80 rounded-3xl p-4 sm:p-6 md:p-7 shadow-card">
+              <div className="w-full h-[280px] sm:h-[340px] md:h-[380px]">
                 <Graph graphData={totalClicks} />
               </div>
             </div>

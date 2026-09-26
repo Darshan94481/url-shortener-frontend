@@ -10,10 +10,17 @@ const NavBar = () => {
   const [isOpen, setIsOpen] = useState(false);
 
   const navLinkClass = ({ isActive }) =>
-    `relative py-1.5 px-3 rounded-lg text-sm font-medium transition-all duration-200 ${
+    `relative py-2 px-3 rounded-lg text-sm font-medium transition-all duration-200 ${
       isActive
         ? 'text-blue-600 bg-blue-50/80 font-semibold'
         : 'text-slate-600 hover:text-slate-900 hover:bg-slate-100/60'
+    }`;
+
+  const mobileNavLinkClass = ({ isActive }) =>
+    `flex items-center min-h-[44px] py-2.5 px-3.5 rounded-xl text-sm font-medium transition-all duration-200 ${
+      isActive
+        ? 'text-blue-600 bg-blue-50/90 font-semibold'
+        : 'text-slate-700 hover:text-slate-900 hover:bg-slate-100/70'
     }`;
 
   const logoutHandler = () => {
@@ -23,13 +30,13 @@ const NavBar = () => {
 
   return (
     <header className="sticky top-0 z-50 bg-white/80 backdrop-blur-md border-b border-slate-200/70 transition-all">
-      <div className="max-w-7xl mx-auto lg:px-14 sm:px-8 px-4 h-16 flex items-center justify-between">
+      <div className="max-w-7xl mx-auto lg:px-14 sm:px-8 px-4 h-16 flex items-center justify-between gap-3">
         {/* Brand Logo */}
-        <NavLink to="/" className="flex items-center gap-2.5 group">
-          <div className="bg-custom-gradient w-9 h-9 rounded-xl flex items-center justify-center shadow-brand-sm group-hover:scale-105 transition-transform duration-200">
+        <NavLink to="/" className="flex items-center gap-2.5 group min-w-0">
+          <div className="bg-custom-gradient w-9 h-9 rounded-xl flex items-center justify-center shadow-brand-sm group-hover:scale-105 transition-transform duration-200 flex-shrink-0">
             <Link2 className="w-5 h-5 text-white" strokeWidth={2.5} />
           </div>
-          <span className="text-xl font-bold bg-gradient-to-r from-slate-900 via-blue-950 to-indigo-900 bg-clip-text text-transparent font-roboto tracking-tight">
+          <span className="text-lg sm:text-xl font-bold bg-gradient-to-r from-slate-900 via-blue-950 to-indigo-900 bg-clip-text text-transparent font-roboto tracking-tight truncate">
             Linklytics
           </span>
         </NavLink>
@@ -87,28 +94,28 @@ const NavBar = () => {
 
         {/* Mobile Hamburger Button */}
         <button
-          className="sm:hidden p-2 rounded-xl text-slate-600 hover:bg-slate-100 transition-colors"
+          className="sm:hidden min-w-[44px] min-h-[44px] p-2.5 rounded-xl text-slate-600 hover:text-slate-900 hover:bg-slate-100 flex items-center justify-center transition-colors flex-shrink-0"
           onClick={() => setIsOpen(!isOpen)}
           aria-label="Toggle Navigation Menu"
         >
-          {isOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6 text-slate-800" />}
+          {isOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
         </button>
       </div>
 
       {/* Mobile Drawer */}
       {isOpen && (
-        <div className="sm:hidden border-t border-slate-200/80 bg-white/95 backdrop-blur-xl px-4 pt-3 pb-6 space-y-2 shadow-lg animate-fadeIn">
+        <div className="sm:hidden border-t border-slate-200/80 bg-white/95 backdrop-blur-xl px-4 pt-3 pb-6 space-y-1.5 shadow-lg transition-all duration-300 ease-in-out">
           <NavLink
             to="/"
             end
-            className={navLinkClass}
+            className={mobileNavLinkClass}
             onClick={() => setIsOpen(false)}
           >
             Home
           </NavLink>
           <NavLink
             to="/about"
-            className={navLinkClass}
+            className={mobileNavLinkClass}
             onClick={() => setIsOpen(false)}
           >
             About
@@ -117,24 +124,24 @@ const NavBar = () => {
           {token && (
             <NavLink
               to="/dashboard"
-              className={navLinkClass}
+              className={mobileNavLinkClass}
               onClick={() => setIsOpen(false)}
             >
-              <span className="flex items-center gap-1.5">
+              <span className="flex items-center gap-2">
                 <LayoutDashboard className="w-4 h-4 text-blue-600" />
                 Dashboard
               </span>
             </NavLink>
           )}
 
-          <div className="pt-3 border-t border-slate-100 flex flex-col gap-2">
+          <div className="pt-3 border-t border-slate-100 flex flex-col gap-2.5">
             {token ? (
               <button
                 onClick={() => {
                   logoutHandler();
                   setIsOpen(false);
                 }}
-                className="flex items-center justify-center gap-2 w-full py-2.5 rounded-xl border border-rose-200 text-rose-600 font-semibold text-sm hover:bg-rose-50 transition-colors"
+                className="flex items-center justify-center gap-2 w-full min-h-[44px] py-2.5 rounded-xl border border-rose-200 text-rose-600 font-semibold text-sm hover:bg-rose-50 transition-colors"
               >
                 <LogOut className="w-4 h-4" />
                 Logout
@@ -144,14 +151,14 @@ const NavBar = () => {
                 <NavLink
                   to="/login"
                   onClick={() => setIsOpen(false)}
-                  className="w-full text-center py-2.5 rounded-xl border border-slate-200 text-slate-700 font-semibold text-sm hover:bg-slate-50 transition-colors"
+                  className="w-full text-center min-h-[44px] flex items-center justify-center py-2.5 rounded-xl border border-slate-200 text-slate-700 font-semibold text-sm hover:bg-slate-50 transition-colors"
                 >
                   Log In
                 </NavLink>
                 <NavLink
                   to="/register"
                   onClick={() => setIsOpen(false)}
-                  className="w-full text-center py-2.5 rounded-xl bg-custom-gradient text-white font-semibold text-sm shadow-brand-sm transition-all"
+                  className="w-full text-center min-h-[44px] flex items-center justify-center py-2.5 rounded-xl bg-custom-gradient text-white font-semibold text-sm shadow-brand-sm transition-all"
                 >
                   Create Free Account
                 </NavLink>

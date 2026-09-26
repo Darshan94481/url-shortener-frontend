@@ -50,7 +50,7 @@ const Graph = ({ graphData = [] }) => {
         borderColor: hasData ? '#2563eb' : 'rgba(203, 213, 225, 0.6)',
         borderWidth: 1,
         borderRadius: 6,
-        barThickness: 24,
+        maxBarThickness: 24,
         categoryPercentage: 0.7,
         barPercentage: 0.8,
       },
@@ -122,8 +122,10 @@ const Graph = ({ graphData = [] }) => {
           display: false,
         },
         ticks: {
+          autoSkip: true,
+          maxTicksLimit: 8,
           color: '#64748b',
-          font: { size: 11 },
+          font: { size: 10 },
           maxRotation: 45,
           minRotation: 0,
         },
@@ -134,44 +136,46 @@ const Graph = ({ graphData = [] }) => {
   return (
     <div className="relative w-full h-full flex flex-col">
       {/* Chart Header Toolbar */}
-      <div className="flex items-center justify-between pb-4 mb-2">
-        <div className="flex items-center gap-2">
-          <div className="w-8 h-8 rounded-lg bg-blue-50 text-blue-600 flex items-center justify-center">
+      <div className="flex items-center justify-between pb-3 sm:pb-4 mb-2">
+        <div className="flex items-center gap-2 min-w-0">
+          <div className="w-8 h-8 rounded-lg bg-blue-50 text-blue-600 flex items-center justify-center flex-shrink-0">
             <BarChart3 className="w-4 h-4" />
           </div>
-          <div>
-            <h4 className="text-sm font-bold text-slate-900 font-roboto">
+          <div className="min-w-0">
+            <h4 className="text-sm font-bold text-slate-900 font-roboto truncate">
               Click Telemetry
             </h4>
-            <span className="text-[11px] text-slate-500">
+            <span className="text-[11px] text-slate-500 block truncate">
               Aggregated daily performance
             </span>
           </div>
         </div>
 
-        {/* View Switcher Toggle */}
-        <div className="flex items-center gap-1 bg-slate-100 p-1 rounded-xl border border-slate-200/60">
+        {/* View Switcher Toggle - >= 40px touch targets */}
+        <div className="flex items-center gap-1 bg-slate-100 p-1 rounded-xl border border-slate-200/60 flex-shrink-0">
           <button
             type="button"
             onClick={() => setChartType('bar')}
-            className={`p-1.5 rounded-lg text-xs font-medium transition-all ${
+            className={`min-w-[40px] min-h-[40px] p-2 rounded-lg text-xs font-medium flex items-center justify-center transition-all ${
               chartType === 'bar'
                 ? 'bg-white text-blue-600 shadow-xs'
                 : 'text-slate-500 hover:text-slate-800'
             }`}
             title="Bar View"
+            aria-label="Bar View"
           >
             <BarChart2 className="w-4 h-4" />
           </button>
           <button
             type="button"
             onClick={() => setChartType('line')}
-            className={`p-1.5 rounded-lg text-xs font-medium transition-all ${
+            className={`min-w-[40px] min-h-[40px] p-2 rounded-lg text-xs font-medium flex items-center justify-center transition-all ${
               chartType === 'line'
                 ? 'bg-white text-blue-600 shadow-xs'
                 : 'text-slate-500 hover:text-slate-800'
             }`}
             title="Trend View"
+            aria-label="Trend View"
           >
             <TrendingUp className="w-4 h-4" />
           </button>
@@ -179,7 +183,7 @@ const Graph = ({ graphData = [] }) => {
       </div>
 
       {/* Chart Canvas */}
-      <div className="relative flex-1 w-full min-h-[280px]">
+      <div className="relative flex-1 w-full min-h-[220px] sm:min-h-[280px]">
         {chartType === 'bar' ? (
           <Bar data={barData} options={options} />
         ) : (
