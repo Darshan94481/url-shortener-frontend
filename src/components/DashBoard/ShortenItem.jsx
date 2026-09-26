@@ -197,9 +197,9 @@ function ShortenItem({ originalUrl, shortUrl, clickCount, createdDate }) {
 <<<<<<< HEAD
             className="flex-1 sm:flex-initial min-h-[40px] inline-flex items-center justify-center gap-1.5 text-xs font-semibold px-3.5 py-2 rounded-xl bg-white text-slate-700 hover:text-indigo-600 hover:bg-indigo-50/50 border border-slate-200 shadow-xs transition-all duration-200"
             title="View QR Code"
-=======
+
             className="inline-flex items-center gap-1.5 text-xs font-semibold px-3.5 py-2 rounded-xl bg-white text-slate-700 hover:text-indigo-600 hover:bg-indigo-50/50 border border-slate-200 shadow-xs transition-all duration-200"
->>>>>>> 368ade5cd6158b87513444d1c2cdd1167ca6de26
+ 368ade5cd6158b87513444d1c2cdd1167ca6de26
           >
             <QrCode className="w-3.5 h-3.5 text-slate-500" />
             <span>QR Code</span>
