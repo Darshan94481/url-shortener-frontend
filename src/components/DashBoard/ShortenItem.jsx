@@ -18,7 +18,6 @@ import dayjs from 'dayjs';
 import Graph from './Graph';
 import { useNavigate } from 'react-router-dom';
 import { useStoreContext } from '../../contextApi/contextApi';
-import Tooltip from '@mui/material/Tooltip';
 import Modal from '@mui/material/Modal';
 
 function ShortenItem({ originalUrl, shortUrl, clickCount, createdDate }) {
@@ -33,13 +32,12 @@ function ShortenItem({ originalUrl, shortUrl, clickCount, createdDate }) {
 
   const baseDomain = import.meta.env.VITE_REACT_SUBDOMAIN || 'https://url-shortener-u1tv.onrender.com';
 
-  const fullShortUrl = shortUrl.startsWith('http')
+  const fullShortUrl = shortUrl?.startsWith('http')
     ? shortUrl
     : `${baseDomain.replace(/\/$/, '')}/${shortUrl}`;
 
   const displayUrl = fullShortUrl.replace(/^https?:\/\//, '');
-
-  const shortCode = shortUrl.split('/').pop();
+  const shortCode = shortUrl?.split('/').pop() || shortUrl;
 
   let domain = '';
   try {
@@ -103,6 +101,7 @@ function ShortenItem({ originalUrl, shortUrl, clickCount, createdDate }) {
   return (
     <div className="bg-white/90 backdrop-blur-sm shadow-card hover:shadow-card-hover border border-slate-200/80 rounded-2xl p-5 sm:p-6 transition-all duration-300">
       <div className="flex flex-col lg:flex-row lg:items-center lg:justify-between gap-4">
+        {/* Destination & Link Details */}
         <div className="flex items-start gap-3.5 flex-1 min-w-0">
           <div className="w-10 h-10 rounded-xl bg-slate-50 border border-slate-200/80 flex items-center justify-center flex-shrink-0 mt-0.5 overflow-hidden">
             {domain ? (
@@ -121,7 +120,7 @@ function ShortenItem({ originalUrl, shortUrl, clickCount, createdDate }) {
 
           <div className="flex-1 min-w-0">
             <div className="flex items-center gap-2">
-              
+              <a
                 href={fullShortUrl}
                 target="_blank"
                 rel="noreferrer"
@@ -129,11 +128,12 @@ function ShortenItem({ originalUrl, shortUrl, clickCount, createdDate }) {
               >
                 {displayUrl}
               </a>
-              
+              <a
                 href={fullShortUrl}
                 target="_blank"
                 rel="noreferrer"
                 className="text-slate-400 hover:text-blue-600 transition-colors p-1"
+                aria-label="Open link in new tab"
               >
                 <ExternalLink className="w-3.5 h-3.5" />
               </a>
@@ -159,7 +159,9 @@ function ShortenItem({ originalUrl, shortUrl, clickCount, createdDate }) {
           </div>
         </div>
 
+        {/* Action Buttons Row */}
         <div className="flex flex-wrap items-center gap-2 lg:flex-shrink-0 pt-3 lg:pt-0 border-t lg:border-t-0 border-slate-100 w-full sm:w-auto">
+          {/* Quick Copy Button */}
           <button
             onClick={handleCopy}
             className={`flex-1 sm:flex-initial min-h-[40px] inline-flex items-center justify-center gap-1.5 text-xs font-semibold px-3.5 py-2 rounded-xl transition-all duration-200 border ${
@@ -181,6 +183,7 @@ function ShortenItem({ originalUrl, shortUrl, clickCount, createdDate }) {
             )}
           </button>
 
+          {/* QR Code Action Button */}
           <button
             onClick={() => setQrModalOpen(true)}
             className="flex-1 sm:flex-initial min-h-[40px] inline-flex items-center justify-center gap-1.5 text-xs font-semibold px-3.5 py-2 rounded-xl bg-white text-slate-700 hover:text-indigo-600 hover:bg-indigo-50/50 border border-slate-200 shadow-xs transition-all duration-200"
@@ -190,6 +193,7 @@ function ShortenItem({ originalUrl, shortUrl, clickCount, createdDate }) {
             <span>QR Code</span>
           </button>
 
+          {/* Analytics Toggle Button */}
           <button
             onClick={analyticsHandler}
             className={`flex-1 sm:flex-initial min-h-[40px] inline-flex items-center justify-center gap-1.5 text-xs font-semibold px-3.5 py-2 rounded-xl transition-all duration-200 ${
@@ -209,6 +213,7 @@ function ShortenItem({ originalUrl, shortUrl, clickCount, createdDate }) {
         </div>
       </div>
 
+      {/* Expandable Analytics Drawer */}
       {analyticsToggle && (
         <div className="mt-5 pt-5 border-t border-slate-100 w-full min-h-[280px] sm:min-h-[340px] animate-fadeIn">
           {loader ? (
@@ -224,6 +229,7 @@ function ShortenItem({ originalUrl, shortUrl, clickCount, createdDate }) {
         </div>
       )}
 
+      {/* QR Code Modal */}
       <Modal
         open={qrModalOpen}
         onClose={() => setQrModalOpen(false)}
@@ -259,7 +265,7 @@ function ShortenItem({ originalUrl, shortUrl, clickCount, createdDate }) {
             </div>
 
             <div className="flex gap-2.5">
-              
+              <a
                 href={qrCodeUrl}
                 download={`qr-${shortCode}.png`}
                 target="_blank"
