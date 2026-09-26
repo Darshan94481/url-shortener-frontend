@@ -31,21 +31,16 @@ function ShortenItem({ originalUrl, shortUrl, clickCount, createdDate }) {
   const [analyticsData, setAnalyticsData] = useState([]);
   const [qrModalOpen, setQrModalOpen] = useState(false);
 
-  // FIX: Handle both cases - backend returns full URL or just code
   const baseDomain = import.meta.env.VITE_REACT_SUBDOMAIN || 'https://url-shortener-u1tv.onrender.com';
 
-  // If shortUrl already contains http, it's already full URL from backend
   const fullShortUrl = shortUrl.startsWith('http')
-   ? shortUrl
+    ? shortUrl
     : `${baseDomain.replace(/\/$/, '')}/${shortUrl}`;
 
-  // For display without https://
   const displayUrl = fullShortUrl.replace(/^https?:\/\//, '');
 
-  // For analytics we need only the code (last part)
   const shortCode = shortUrl.split('/').pop();
 
-  // Extract destination domain for favicon
   let domain = '';
   try {
     const urlObj = new URL(originalUrl);
@@ -110,7 +105,7 @@ function ShortenItem({ originalUrl, shortUrl, clickCount, createdDate }) {
       <div className="flex flex-col lg:flex-row lg:items-center lg:justify-between gap-4">
         <div className="flex items-start gap-3.5 flex-1 min-w-0">
           <div className="w-10 h-10 rounded-xl bg-slate-50 border border-slate-200/80 flex items-center justify-center flex-shrink-0 mt-0.5 overflow-hidden">
-            {domain? (
+            {domain ? (
               <img
                 src={`https://www.google.com/s2/favicons?domain=${domain}&sz=64`}
                 alt="favicon"
@@ -126,7 +121,7 @@ function ShortenItem({ originalUrl, shortUrl, clickCount, createdDate }) {
 
           <div className="flex-1 min-w-0">
             <div className="flex items-center gap-2">
-              <a
+              
                 href={fullShortUrl}
                 target="_blank"
                 rel="noreferrer"
@@ -134,7 +129,7 @@ function ShortenItem({ originalUrl, shortUrl, clickCount, createdDate }) {
               >
                 {displayUrl}
               </a>
-              <a
+              
                 href={fullShortUrl}
                 target="_blank"
                 rel="noreferrer"
@@ -152,7 +147,7 @@ function ShortenItem({ originalUrl, shortUrl, clickCount, createdDate }) {
               <span className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-lg bg-emerald-50 border border-emerald-100/80 text-emerald-700 text-xs font-semibold">
                 <MousePointerClick className="w-3.5 h-3.5 text-emerald-600" />
                 <span>
-                  {clickCount} {clickCount === 1? 'click' : 'clicks'}
+                  {clickCount} {clickCount === 1 ? 'click' : 'clicks'}
                 </span>
               </span>
 
@@ -164,22 +159,16 @@ function ShortenItem({ originalUrl, shortUrl, clickCount, createdDate }) {
           </div>
         </div>
 
-<<<<<<< HEAD
-        {/* Action Buttons Row - flex-wrap and 40px touch targets */}
         <div className="flex flex-wrap items-center gap-2 lg:flex-shrink-0 pt-3 lg:pt-0 border-t lg:border-t-0 border-slate-100 w-full sm:w-auto">
-          {/* Quick Copy Button */}
-=======
-        <div className="flex items-center gap-2 lg:flex-shrink-0 pt-2 lg:pt-0 border-t lg:border-t-0 border-slate-100">
->>>>>>> 368ade5cd6158b87513444d1c2cdd1167ca6de26
           <button
             onClick={handleCopy}
             className={`flex-1 sm:flex-initial min-h-[40px] inline-flex items-center justify-center gap-1.5 text-xs font-semibold px-3.5 py-2 rounded-xl transition-all duration-200 border ${
               isCopied
-               ? 'bg-emerald-50 text-emerald-700 border-emerald-200 shadow-xs'
+                ? 'bg-emerald-50 text-emerald-700 border-emerald-200 shadow-xs'
                 : 'bg-white text-slate-700 hover:text-blue-600 hover:bg-blue-50/50 border-slate-200 shadow-xs'
             }`}
           >
-            {isCopied? (
+            {isCopied ? (
               <>
                 <Check className="w-3.5 h-3.5 text-emerald-600" />
                 <span>Copied!</span>
@@ -194,33 +183,24 @@ function ShortenItem({ originalUrl, shortUrl, clickCount, createdDate }) {
 
           <button
             onClick={() => setQrModalOpen(true)}
-<<<<<<< HEAD
             className="flex-1 sm:flex-initial min-h-[40px] inline-flex items-center justify-center gap-1.5 text-xs font-semibold px-3.5 py-2 rounded-xl bg-white text-slate-700 hover:text-indigo-600 hover:bg-indigo-50/50 border border-slate-200 shadow-xs transition-all duration-200"
             title="View QR Code"
-
-            className="inline-flex items-center gap-1.5 text-xs font-semibold px-3.5 py-2 rounded-xl bg-white text-slate-700 hover:text-indigo-600 hover:bg-indigo-50/50 border border-slate-200 shadow-xs transition-all duration-200"
- 368ade5cd6158b87513444d1c2cdd1167ca6de26
           >
             <QrCode className="w-3.5 h-3.5 text-slate-500" />
             <span>QR Code</span>
           </button>
 
           <button
-<<<<<<< HEAD
-            onClick={() => analyticsHandler(shortUrl)}
-            className={`flex-1 sm:flex-initial min-h-[40px] inline-flex items-center justify-center gap-1.5 text-xs font-semibold px-3.5 py-2 rounded-xl transition-all duration-200 ${
-=======
             onClick={analyticsHandler}
-            className={`inline-flex items-center gap-1.5 text-xs font-semibold px-3.5 py-2 rounded-xl transition-all duration-200 ${
->>>>>>> 368ade5cd6158b87513444d1c2cdd1167ca6de26
+            className={`flex-1 sm:flex-initial min-h-[40px] inline-flex items-center justify-center gap-1.5 text-xs font-semibold px-3.5 py-2 rounded-xl transition-all duration-200 ${
               analyticsToggle
-               ? 'bg-blue-600 text-white shadow-brand-sm'
+                ? 'bg-blue-600 text-white shadow-brand-sm'
                 : 'bg-blue-50 text-blue-600 hover:bg-blue-100 border border-blue-100'
             }`}
           >
             <BarChart2 className="w-3.5 h-3.5" />
             <span>Analytics</span>
-            {analyticsToggle? (
+            {analyticsToggle ? (
               <ChevronUp className="w-3 h-3" />
             ) : (
               <ChevronDown className="w-3 h-3" />
@@ -229,18 +209,10 @@ function ShortenItem({ originalUrl, shortUrl, clickCount, createdDate }) {
         </div>
       </div>
 
-<<<<<<< HEAD
-      {/* Expandable Analytics Drawer - responsive height */}
       {analyticsToggle && (
         <div className="mt-5 pt-5 border-t border-slate-100 w-full min-h-[280px] sm:min-h-[340px] animate-fadeIn">
           {loader ? (
             <div className="flex flex-col justify-center items-center h-[260px] sm:h-[320px] gap-2">
-=======
-      {analyticsToggle && (
-        <div className="mt-5 pt-5 border-t border-slate-100 w-full min-h-[360px] animate-fadeIn">
-          {loader? (
-            <div className="flex flex-col justify-center items-center h-[340px] gap-2">
->>>>>>> 368ade5cd6158b87513444d1c2cdd1167ca6de26
               <div className="w-9 h-9 border-3 border-blue-100 border-t-blue-600 rounded-full animate-spin" />
               <p className="text-xs text-slate-400 font-medium">Loading telemetry...</p>
             </div>
@@ -252,8 +224,6 @@ function ShortenItem({ originalUrl, shortUrl, clickCount, createdDate }) {
         </div>
       )}
 
-<<<<<<< HEAD
-      {/* QR Code Modal - responsive centering and touch targets */}
       <Modal
         open={qrModalOpen}
         onClose={() => setQrModalOpen(false)}
@@ -265,14 +235,6 @@ function ShortenItem({ originalUrl, shortUrl, clickCount, createdDate }) {
               onClick={() => setQrModalOpen(false)}
               className="absolute top-3.5 right-3.5 min-w-[40px] min-h-[40px] p-2 rounded-xl text-slate-400 hover:text-slate-700 hover:bg-slate-100 flex items-center justify-center transition-colors"
               aria-label="Close QR Modal"
-=======
-      <Modal open={qrModalOpen} onClose={() => setQrModalOpen(false)}>
-        <div className="flex items-center justify-center min-h-screen px-4">
-          <div className="bg-white rounded-3xl p-6 sm:p-8 max-w-sm w-full shadow-2xl border border-slate-100 relative text-center">
-            <button
-              onClick={() => setQrModalOpen(false)}
-              className="absolute top-4 right-4 p-1.5 rounded-xl text-slate-400 hover:text-slate-700 hover:bg-slate-100"
->>>>>>> 368ade5cd6158b87513444d1c2cdd1167ca6de26
             >
               <X className="w-5 h-5" />
             </button>
@@ -281,7 +243,6 @@ function ShortenItem({ originalUrl, shortUrl, clickCount, createdDate }) {
               <QrCode className="w-6 h-6" />
             </div>
 
-<<<<<<< HEAD
             <h3 id="qr-modal-title" className="text-lg font-bold text-slate-900 font-roboto mb-1">
               QR Code
             </h3>
@@ -295,28 +256,15 @@ function ShortenItem({ originalUrl, shortUrl, clickCount, createdDate }) {
                 alt="QR Code"
                 className="w-40 h-40 sm:w-48 sm:h-48 rounded-xl object-contain mx-auto"
               />
-=======
-            <h3 className="text-lg font-bold text-slate-900 mb-1">QR Code</h3>
-            <p className="text-xs text-slate-500 font-mono truncate mb-5 max-w-xs mx-auto">
-              {fullShortUrl}
-            </p>
-
-            <div className="bg-slate-50 p-4 rounded-2xl border border-slate-100 inline-block mb-6">
-              <img src={qrCodeUrl} alt="QR Code" className="w-48 h-48 rounded-xl object-contain mx-auto" />
->>>>>>> 368ade5cd6158b87513444d1c2cdd1167ca6de26
             </div>
 
             <div className="flex gap-2.5">
-              <a
+              
                 href={qrCodeUrl}
                 download={`qr-${shortCode}.png`}
                 target="_blank"
                 rel="noreferrer"
-<<<<<<< HEAD
                 className="w-full min-h-[44px] inline-flex items-center justify-center gap-2 bg-custom-gradient text-white text-xs font-semibold py-2.5 rounded-xl shadow-brand-sm hover:shadow-brand-md transition-all duration-200"
-=======
-                className="w-full inline-flex items-center justify-center gap-2 bg-custom-gradient text-white text-xs font-semibold py-2.5 rounded-xl shadow-brand-sm"
->>>>>>> 368ade5cd6158b87513444d1c2cdd1167ca6de26
               >
                 <Download className="w-3.5 h-3.5" />
                 <span>Download QR</span>
